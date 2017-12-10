@@ -1,5 +1,6 @@
 package com.itguang.springbootfastjson.web;
 
+import com.alibaba.fastjson.JSONPath;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.itguang.springbootfastjson.entity.User;
 import com.itguang.springbootfastjson.vo.ResultVO;
@@ -11,30 +12,27 @@ import java.util.List;
 
 /**
  * @author itguang
- * @create 2017-12-09 16:35
+ * @create 2017-12-10 10:00
  **/
+
 @RestController
-public class UserController {
+public class JSONpathController {
 
 
 
-    @RequestMapping("/getUser")
-    @JsonView(User.UserSimpleView.class)
-    public List<User> getUser(){
+    @RequestMapping("/test1")
+    public User test1(){
 
         User user = new User("itguang", "123456", "123@qq.com");
+        String username = (String) JSONPath.eval(user, "$.username");
 
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("itguang", "123456", "123@qq.com"));
-        users.add(new User("itguang", "123456", "123@qq.com"));
-        users.add(new User("itguang", "123456", "123@qq.com"));
-        users.add(new User("itguang", "123456", "123@qq.com"));
-        return users;
+
+        return user;
     }
 
 
 
-    @RequestMapping("/test")
+    @RequestMapping("/test2")
     public ResultVO<User> test2(){
 
 
@@ -47,6 +45,7 @@ public class UserController {
         ResultVO resultVO = new ResultVO(1, "成功", users);
         return resultVO;
     }
+
 
 
 }

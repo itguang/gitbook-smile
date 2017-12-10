@@ -1,12 +1,14 @@
 package com.itguang.springbootfastjson.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 
 /**
  * @author itguang
  * @create 2017-12-09 16:28
  **/
+@Data
 public class User {
 
     //指定视图
